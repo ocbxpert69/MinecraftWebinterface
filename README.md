@@ -13,10 +13,18 @@ Walktrough the config.php, define it for your server and everything should be fi
 Plugins you need for this:
 =====================
 Fe
+
 Highscores
+
 Stats
+
 AuthMe Reloaded (set with SHA512 in settings)
+
 Jobs
+
+Websend
+
+SurvivalGames
 
 For everything else, write an issue in the Issue Tracker on GitHub.
 
