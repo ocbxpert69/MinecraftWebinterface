@@ -33,3 +33,7 @@ Copyright
 =====================
 You are not allowed to remove the Copyright on the bottom site, every remove will be punished.
 You are allowed to use it and edit it, but the Copyright will remain there!
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/NowNewStart/minecraftwebinterface/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
