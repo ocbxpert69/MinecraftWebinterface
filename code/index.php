@@ -38,7 +38,7 @@ $players = "Error";
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="index.php" style="color: <?php echo $color; ?>"><span style="color:#c0c0c0">Minecraft IP :</span> <?php echo $online. " (".$players." User online)"; ?></a></li>
-      <li><a href="index.php" style="color: <?php echo $tsc; ?>"><span style="color:#c0c0c0">Teamspeak IP :</span> <?php echo $ton; ?></a></li>
+      <!--<li><a href="index.php" style="color: <?php echo $tsc; ?>"><span style="color:#c0c0c0">Teamspeak IP :</span> <?php echo $ton; ?></a></li>-->
     </ul>
   </div>
 </nav>
@@ -118,7 +118,7 @@ else
 ?>
 <div class="col-lg-12">
 <?php
-$query = $sql->query("SELECT * FROM news ORDER BY id DESC LIMIT 5");
+$query = $sql->query("SELECT * FROM news ORDER BY newsID DESC LIMIT 5");
 while($row = mysqli_fetch_object($query)) {
 echo "<div class='well'>";
 echo "Written by ".$row->poster." Date: ".$row->timestamp." <hr>";

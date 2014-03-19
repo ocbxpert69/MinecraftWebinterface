@@ -63,7 +63,7 @@ include_once 'Websend.php';
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="intern.php" style="color: <?php echo $color; ?>"><span style="color:#c0c0c0">Minecraft IP :</span> <?php echo $online. " (".$players." User online)"; ?></a></li>
-      <li><a href="intern.php" style="color: <?php echo $tsc; ?>"><span style="color:#c0c0c0">Teamspeak IP :</span> <?php echo $ton; ?></a></li>
+     <!-- <li><a href="intern.php" style="color: <?php echo $tsc; ?>"><span style="color:#c0c0c0">Teamspeak IP :</span> <?php echo $ton; ?></a></li>-->
       <li><a href="intern.php?page=Logout">Logout</a></li>
     </ul>
   </div>
@@ -746,7 +746,7 @@ echo $bank->money."&euro;";
 <h3>Fastnavigation:</h3>
 <hr>
 <a href="intern.php?page=Support">Write Support Ticket</a><br />
-<?php echo "<a href=".$forum_link.">Forum</a>"; ?>
+<?php echo "<a href=".$forum_link.">Forum</a>"; ?><br />
 <a href="intern.php?page=Settings">Settings</a>
 
 

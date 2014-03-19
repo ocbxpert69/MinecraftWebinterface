@@ -20,19 +20,31 @@
       } else {
       $online = "Error";
       }
-$fp = fsockopen($ts_ip, $ts_port, $errno, $errstr, 1) or die("Cannot connect to Teamspeak Server!");
+	/*
+	$ts_ip = $ts_ip;
+	$ts_port = $ts_port;
+try {
+	  	
+$fp = fsockopen($ts_ip, $ts_port, $errno, $errstr, 1);
 if (!$fp || !fwrite($fp,"nix")) 
 { 
+   throw new Exception("Cannot connect to TS3 Server");
    $tsc = "Red";
    $ton = "Offline";
 } elseif($fp || fwrite($fp,"nix")) {
    $tsc = "Green";
-   $ton = $ts_ip;
+   $ton = "Online";
 } else {
+throw new Exception("Cannot connect to TS3 Server");  
    $tsc ="Red";
    $ton = "Error";
 }
-fclose($fp) or die("Cannot connect to Teamspeak Server!");
+} catch(Exception $e) {
+	$e = $e;
+}
+
+fclose($fp);
+*/
 function get_data($url) {
 	$ch = curl_init();
 	$timeout = 5;
