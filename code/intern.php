@@ -760,8 +760,11 @@ echo $bank->money."&euro;";
 }
 ?>
 </div>
+<br><br><br><br>
 <hr>
+<center>
 Minecraft Webinterface made by <a href="http://www.nownewstart.net">NowNewStart</a>.
+</center>
   <script type="text/javascript" src='js/jquery.js'></script>
     <script type="text/javascript" src='js/bootstrap.min.js'></script>
 </body>
