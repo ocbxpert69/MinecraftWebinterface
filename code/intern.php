@@ -85,23 +85,24 @@ echo "<div class='alert alert-info'>This feature is actually in development.</di
 <div class="col-lg-6"> 
 <h3>The Team</h3>
 <hr>
-<div class="row">
-<div class="col-lg-8">
-Username
-</div>
-<div class="col-lg-4">
-Position
-</div>
-</div>
 <br />
-<div class="row">
-<div class="col-lg-8">
-User
-</div>
-<div class="col-lg-4" style="color: red;">
-Owner
-</div>
-</div>
+
+<?php
+$length = count($admins);
+for ($i = 0; $i < $length; $i++) {
+  echo "<div class='row'><div class='col-lg-8'>";
+  print $admins[$i];
+  echo "</div><div class='col-lg-4' style='color:red'>Admin</div></div>";
+}
+$length = count($supporters);
+for ($i = 0; $i < $length; $i++) {
+  echo "<div class='row'><div class='col-lg-8'>";
+  print $supporters[$i];
+  echo "</div><div class='col-lg-4' style='color:green'>Supporter</div></div>";
+}
+?>
+
+
 </div>
 
 <div class="col-lg-6">
