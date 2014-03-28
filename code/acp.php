@@ -123,7 +123,26 @@ ban($a);
 }
 if($action == "TBann") {
 $a = isset($_GET['user']) ? $_GET['user'] : false;
-$t = isset($_GET['t']) ? $_GET['t'] : false;
+?>
+<h1>TempBan</h1>
+<p>How long do you want to ban <?php echo $a; ?>?</p>
+<?php
+echo '<form action="acp.php?page=Users&action=RTBann&user='.$a.'" method="POST">';
+?>
+  <div class="form-group">
+    <label for="post"  class="col-sm-2 control-label">Time (in hours):</label>
+    <div class="col-sm-10">
+    <input type="number" step="1" name="time" id="time" placeholder="Time (in hours)" class="form-control2" />
+    </div>
+  </div>
+  <div class="form-group">
+      <button type="submit" class="btn btn-primary">TempBan</button>
+  </div>
+<?php
+}
+if($action == "RTBann") {
+$a = isset($_GET['user']) ? $_GET['user'] : false;
+$t = $_POST['time'];
 tban($a,$t);
 }
 if($action == "Unban") {
@@ -150,7 +169,7 @@ echo "<div class='col-lg-2'>";
 echo "<a href='acp.php?page=Users&action=Ban&user=".$row->username."'>Ban</a>";
 echo "</div>";
 echo "<div class='col-lg-2'>";
-echo "<a href='acp.php?page=Users&action=TBann&user=".$row->username."&t=6'>Ban for 6 Hours</a>";
+echo "<a href='acp.php?page=Users&action=TBann&user=".$row->username."'>TempBan</a>";
 echo "</div>";
 echo "<div class='col-lg-2'>";
 echo "<a href='acp.php?page=Users&action=Unban&user=".$row->username."'>Unban</a>";
@@ -338,7 +357,6 @@ error_reporting(E_ALL ^ E_NOTICE);
 if(empty($v['software'])) { $version = "Unknown"; } else { $version = $v['software']; }
 echo "<strong>Server Version: </strong>".$version."<br />";  
 ?>
-<!-- Button trigger modal -->
 <strong>Installed Plugins: </strong>
 <a href="#" data-toggle="modal" data-target="#pluginModal">Open List</a><br />
 <?php
@@ -371,7 +389,6 @@ echo "<strong>Players: </strong> $p Players are online!";
 ?>
 
 
-<!-- Modal -->
 <div class="modal fade" id="pluginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -393,9 +410,9 @@ echo "<strong>Players: </strong> $p Players are online!";
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+    </div>
+  </div>
+</div>
 </div>
 <div class="col-lg-6">
 <h4>Quick Settings</h4> 
