@@ -26,4 +26,6 @@ $header  = "MC Server";        # Text in the Navigation Bar
 $forum_link = "http://jcoremc.de/forum";
 $admins = array("Admin1","Admin2","NowNewStart"); #Set Admins who can access the control panel
 $supporters = array("Supporter1","Supporter2"); #Set Supporters, Supporter Control Panel is coming
+$log = "/home/mainserver/logs/latest.log"; #Path to your log
+$lastlog = "50"; #Set how many lines should be shown as 'last log'
 ?>

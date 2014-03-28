@@ -17,7 +17,18 @@ include_once 'Websend.php';
 <title><?php echo $title; ?></title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<script>
+var iframe;
+window.onload = function()
+{
+  iframe = document.getElementById("logFrame");
+  window.setInterval("RefreshIFrame()", 20000); // 60000 ms = 60 Sek.
+}
+function RefreshIFrame()
+{
+  iframe.location.reload();
+}
+</script>
 </head>
 <body>
 <nav class="navbar navbar-default" role="navigation" style="margin-bottom: 0px; padding-bottom: 0px;">
@@ -50,21 +61,6 @@ include_once 'Websend.php';
 <div class="container" style="margin-top: 10px; padding-top: 10px;">
 <?php
 if($page == "Console") {
-?>
-<form action="acp.php?page=Console&action=Exec" method="POST" class="form-horizontal" role="form">
-  <div class="form-group">
-    <label for="command"  class="col-sm-2 control-label">Command</label>
-    <div class="col-sm-10">
-      <input type="text" name="command" class="form-control" id="user" placeholder="Command" />
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-default">Send</button>
-    </div>
-  </div>
-</form>
-<?php
 if($action == "Exec") {
 $command = $_POST['command'];
 if(empty($command)) {
@@ -80,6 +76,25 @@ $ws->disconnect();
 echo "<div class='alert alert-info'>Command succesfully performed.</div>";
 }
 }
+?>
+<form action="acp.php?page=Console&action=Exec" method="POST" class="form-horizontal" role="form">
+  <div class="form-group">
+    <label for="command"  class="col-sm-2 control-label">Command</label>
+    <div class="col-sm-10">
+      <input type="text" name="command" class="form-control" id="user" placeholder="Command" />
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">Send</button>
+    </div>
+  </div>
+</form>
+<?php
+echo "<h2>Log</h2>";
+echo "<div class='well'>";
+echo "<iframe src='log.php' id='logFrame' width='100%' height='400px;' style='border: none;'>Your browser does not allow iFrames.</iframe>";
+echo "</div>";
 }
 else
 {
@@ -90,7 +105,7 @@ if($page == "Users") {
 <?php
 function ban($bannuser) {
 $ws = new Websend($ip, 4445); 
-
+                   
 //Replace with password specified in Websend config file
 $ws->connect($rcon_pw);
 
