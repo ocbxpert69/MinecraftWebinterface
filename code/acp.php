@@ -10,7 +10,7 @@ include_once 'Websend.php';
       #if($_SESSION['user'] == "User" || $_SESSION['user'] == "User2") would be for two users
       #if($_SESSION['user'] == "User" || $_SESSION['user'] == "User2" || $_SESSION['user'] == "User"3) would be for three users
       #Extend this how you want. I'll add a better possibility later. Sorry for that.
-      if($_SESSION['user'] == "User" ) {
+      if(in_array($_SESSION['user'],$admins)) {
 ?>
 <!DOCTYPE html>
 <head>
@@ -335,7 +335,8 @@ else
 $v = get_data("http://api.iamphoenix.me/software/?server_ip=".$ip); 
 $v = json_decode($v, true);
 error_reporting(E_ALL ^ E_NOTICE);
-echo "<strong>Server Version: </strong>".$v[software]."<br />";  
+if(empty($v['software'])) { $version = "Unknown"; } else { $version = $v['software']; }
+echo "<strong>Server Version: </strong>".$version."<br />";  
 ?>
 <!-- Button trigger modal -->
 <strong>Installed Plugins: </strong>
@@ -344,6 +345,9 @@ echo "<strong>Server Version: </strong>".$v[software]."<br />";
 $mv = get_data("http://api.iamphoenix.me/version/?server_ip=".$ip); 
 $mv = json_decode($mv, true);
 $mmv = $mv["version"];
+if(empty($mvv)) {
+$mmv = "Unknown";
+}
 echo "<strong>Minecraft Version: </strong> $mmv<br />";
 
 $s = get_data("http://api.iamphoenix.me/status/?server_ip=".$ip);
@@ -359,7 +363,11 @@ echo "<strong> Server Status: </strong> Unknown<br />";
 $p = get_data("http://api.iamphoenix.me/players/?server_ip=".$ip);
 $p = json_decode($p, true);
 $p = $p["players"];
-echo "<strong>Players: </strong> $p Player are online!";
+if($p == 0 || empty($p))
+{
+$p = 0;
+}
+echo "<strong>Players: </strong> $p Players are online!";
 ?>
 
 
@@ -475,6 +483,6 @@ Minecraft Webinterface made by <a href="http://www.nownewstart.net">NowNewStart<
 </html>
 <?php
 } else {
-header("Location: intern.php?page=ForgetIt");
+echo $_SESSION['user'];
 } 
 ?>

@@ -50,11 +50,7 @@ include_once 'Websend.php';
       <li><a href="intern.php?page=Support">Support</a></li>
       <?php
       #Simple way to allow more people to access this:
-      #if($_SESSION['user'] == "User") is the main line
-      #if($_SESSION['user'] == "User" || $_SESSION['user'] == "User2") would be for two users
-      #if($_SESSION['user'] == "User" || $_SESSION['user'] == "User2" || $_SESSION['user'] == "User"3) would be for three users
-      #Extend this how you want. I'll add a better possibility later. Sorry for that.
-      if($_SESSION['user'] == "User" ) {
+      if(in_array($_SESSION['user'],$admins)) {
       ?>
       <li><a href="acp.php">Control Panel</a></li>
       <?php
