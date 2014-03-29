@@ -1,5 +1,6 @@
 <?php
 include 'global.php';
+$webinterface_version = "015";
 $data = get_data("http://api.iamphoenix.me/players/?server_ip=".$ip.":".$port."&clean=true"); 
 $data = json_decode($data, true);  
 isset($data["players"]) ? $data["players"] : false;   
@@ -363,6 +364,16 @@ else
 ?>
 <h1>Welcome <?php echo $_SESSION['user']; ?></h1>
 <div class="row">
+<?php
+$wv = get_data("http://www.nownewstart.net/mc/check.php?version=".$webinterface_version);
+if(empty($wv)) {
+
+}
+else
+{
+echo "<div class='alert alert-info'>A new version of the Webinterface is out. Check it out <a href='https://github.com/NowNewStart/MinecraftWebinterface/releases'>here</a></div>";
+}
+?>
 <div class="col-lg-6">
 <h4>Server-Information:</h4>  <hr>
 <?php
