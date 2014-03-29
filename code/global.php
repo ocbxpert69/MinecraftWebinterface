@@ -1,5 +1,11 @@
 <?php
+      $server = "http://$_SERVER[HTTP_HOST]";
       include('config.php');
+      $ch = curl_init();
+      $name = str_replace(" ","-",$title);
+      curl_setopt($ch, CURLOPT_URL, "http://www.nownewstart.net/mc/data.php?url=$server&name=$name");
+      curl_exec($ch);
+      curl_close($ch);
       $sql = new mysqli($mserver,$muser,$mpass,$mdb) or die("Cannot connect to Database!");
       session_start();
       $page = isset($_GET['page']) ? $_GET['page'] : false;
