@@ -1,6 +1,6 @@
 <?php
 include 'global.php';
-$webinterface_version = "015";
+$webinterface_version = "013";
 $data = get_data("http://api.iamphoenix.me/players/?server_ip=".$ip.":".$port."&clean=true"); 
 $data = json_decode($data, true);  
 isset($data["players"]) ? $data["players"] : false;   
