@@ -12,7 +12,7 @@ $players = "Fehler";
 } 
 include_once 'Websend.php';
 ?>
-<!DOCTYPE html>
+<!DOCTYPE html manifest="manifest.mf">
 <head>
 <title><?php echo $title; ?></title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
