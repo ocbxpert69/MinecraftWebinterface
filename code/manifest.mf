@@ -1,0 +1,13 @@
+CACHE MANIFEST
+# 2010-06-18:v2
+
+# Explicitly cached 'master entries'.
+CACHE:
+js/jquery.js
+js/bootstrap.min.js
+js/bootstrap.js
+css/bootstrap.black.min.css
+css/bootstrap.css
+css/bootstrap.min.css
+css/bootstrap-theme.css
+css/bootstrap-theme.min.css

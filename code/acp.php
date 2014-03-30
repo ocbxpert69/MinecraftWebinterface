@@ -13,7 +13,7 @@ include_once 'Websend.php';
       #Extend this how you want. I'll add a better possibility later. Sorry for that.
       if(in_array($_SESSION['user'],$admins)) {
 ?>
-<!DOCTYPE html>
+<!DOCTYPE html manifest="manifest.mf">
 <head>
 <title><?php echo $title; ?></title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
@@ -361,6 +361,117 @@ echo '</div>
 }
 else
 {
+if($page == "Server") {
+?>
+<h1>Server</h1>
+<hr>
+<div class="row">
+<div class="col-lg-6">
+<h3>Server Information:</h3>
+
+
+<div class="row">
+<div class="col-lg-6">
+<strong>Server Status:</strong>
+</div>
+<div class="col-lg-6">
+<?php
+$s = get_data("http://api.iamphoenix.me/status/?server_ip=".$ip);
+$s = json_decode($s, true);
+$s = $s["status"];
+if($s == "true") {
+echo "<span style='color:green'>Online</span>";
+} elseif($s == "false") {
+echo "<span style='color:red'>Offline</span>";
+} else {
+echo "Unknown";
+}   
+?>
+</div>
+</div>
+<?php
+if($s != "false") {} else { ?>
+<div class="row">
+<div class="col-lg-6">
+<strong>Server Version:</strong>
+</div>
+<div class="col-lg-6">
+<?php
+$v = get_data("http://api.iamphoenix.me/software/?server_ip=".$ip); 
+$v = json_decode($v, true);
+error_reporting(E_ALL ^ E_NOTICE);
+if(empty($v['software'])) { $version = "Unknown"; } else { $version = $v['software']; }
+echo $version;  
+?>
+</div>
+</div>
+
+<div class="row">
+<div class="col-lg-6">
+<strong>Players:</strong>
+</div>
+<div class="col-lg-6">
+<?php
+$p = get_data("http://api.iamphoenix.me/players/?server_ip=".$ip);
+$p = json_decode($p, true);
+$p = $p["players"];
+if($p == 0 || empty($p))
+{
+echo "Your Server is empty.";
+} else {
+echo "$p Players are online!";
+}
+?>
+</div>
+</div>
+
+
+<?php } ?>
+</div>
+<div class="col-lg-6">
+<h3>Common Information:</h3>
+<?php
+$fsize_bytes = disk_free_space("/"); 
+$msize_bytes = disk_total_space("/");
+$fsize_kb = $fsize_bytes / 1024;
+$msize_kb = $msize_bytes / 1024;
+$fsize_mb = $fsize_kb / 1024;
+$msize_mb = $msize_kb / 1024;
+$fsize_gb = $fsize_mb / 1024;
+$msize_gb = $msize_mb / 1024;
+if($msize_bytes < 1024) {
+$free = $msize_bytes;
+} elseif($msize_kb < 1024) {
+$free = $msize_kb;
+} elseif($msize_mb < 1024) {
+$free = $msize_mb;
+} else {
+$free = $msize_gb;
+}
+if($fsize_bytes < 1024) {
+$total = $fsize_bytes;
+} elseif($fsize_kb < 1024) {
+$total = $fsize_kb;
+} elseif($fsize_mb < 1024) {
+$total = $fsize_mb;
+} else {
+$total = $fsize_gb;
+}
+$procent = 100 - $free / $total;
+$procent = 100 - round($procent, 2);
+?>
+<strong>Disk Space used:</strong><br />
+<div class="progress">
+<?php echo'  <div class="progress-bar" role="progressbar" aria-valuenow="'.$procent.'" aria-valuemin="0" aria-valuemax="100" style="width: '.$procent.'%;">
+    <center style="color: black">'.$procent.'%</center>
+  </div>';
+?>
+</div>
+</div>
+</div>
+<?php
+} else
+{
 ?>
 <h1>Welcome <?php echo $_SESSION['user']; ?></h1>
 <div class="row">
@@ -512,6 +623,7 @@ if($s == "true") {
 </div>
 </div>
 <?php
+}
 }
 }
 }
