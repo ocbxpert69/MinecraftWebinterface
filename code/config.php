@@ -5,7 +5,6 @@
 
 
 
-
 #MySQL Settings
 $mserver = "localhost";    #What's your MySQL Server?
 $muser   = "root";          #What's the name of your user
@@ -19,6 +18,7 @@ $rcon_pw = "1337";     #What is the recon password? Check if it's set and enable
 $port    = "25565";        #Port of your Minecraft Server
 $ts_ip   = "109.230.231.170";    #Teamspeak IP
 $ts_port = "9987";          #Port of your Teamspeak Server
+$dynmap_ip = "127.0.0.1:8888"; #Port to your dynmap
 
 #Page Settings
 $title   = "Minecraft Server"; # Set the Title of the Pages

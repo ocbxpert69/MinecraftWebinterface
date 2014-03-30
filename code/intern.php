@@ -71,7 +71,7 @@ include_once 'Websend.php';
 <div class="container" style="margin-top: 10px; padding-top: 10px;">
 <?php
 if($page == "Dynmap") {
-echo "<iframe src='http://".$dynmap_ip."/?worldname=Stadt&mapname=flat&zoom=4&x=27.000000000000014&y=64&z=260' style='width: 100%; height: 500px;'>Dein Browser erlaubt keine iFrames.</iframe>";
+echo "<iframe src='http://".$dynmap_ip."/?worldname=Stadt&mapname=flat&zoom=4&x=27.000000000000014&y=64&z=260' style='width: 100%; height: 500px; border: 0px solid silver;'>Dein Browser erlaubt keine iFrames.</iframe>";
 }
 else
 {
@@ -79,13 +79,14 @@ if($page == "Users") {
 echo "<h1>".$players." Players online</h1>";
 $players = get_data("http://api.iamphoenix.me/list/?server_ip=".$ip.":".$port."&clean=true");
 $players = json_decode($players,true);
-echo "<div class='alert alert-info'>This feature is actually in development.</div>";
 ?>
 <div class="row">
 <div class="col-lg-6"> 
-<h3>The Team</h3>
-<hr>
-<br />
+<div class="panel panel-primary">
+<div class="panel-heading"                            
+<h3 class="panel-title">The Team</h3>
+</div>
+<div class="panel-body">
 
 <?php
 $length = count($admins);
@@ -101,13 +102,17 @@ for ($i = 0; $i < $length; $i++) {
   echo "</div><div class='col-lg-4' style='color:green'>Supporter</div></div>";
 }
 ?>
-
+</div>
+</div>
 
 </div>
 
 <div class="col-lg-6">
-<h3>Registered users</h3>
-<hr>
+<div class="panel panel-primary">
+<div class="panel-heading"                            
+<h3 class="panel-title">Registered users</h3>
+</div>
+<div class="panel-body">
 <?php
 $query = $sql->query("SELECT * FROM authme");
 while($row = mysqli_fetch_object($query)) {
@@ -117,6 +122,8 @@ echo "</div></div>";
 
 }
 ?>
+</div>
+</div>
 </div>
 </div>
 <?php
@@ -285,7 +292,7 @@ echo "</div>";
 </div>
 <?php } elseif($job == "Brewer") { ?>
 <div class="col-lg-12">
-<center><h3>Brewer</h3></center>
+<h3>Brewer</h3>
 <hr>
 <?php
 $query = $sql->query("SELECT * FROM jobs_jobs WHERE job='Brewer' ORDER BY level DESC LIMIT 25");
@@ -303,7 +310,7 @@ echo "</div>";
 </div>
 <?php } elseif($job == "Enchanter") { ?>
 <div class="col-lg-12">
-<center><h3>Enchanter</h3></center>
+<h3>Enchanter</h3>
 <hr>
 <?php
 $query = $sql->query("SELECT * FROM jobs_jobs WHERE job='Enchanter' ORDER BY level DESC LIMIT 25");
@@ -324,14 +331,13 @@ echo "</div>";
 } else {
 ?>
 <div class="col-lg-12">
-<center><h3>Job Selection</h3></center>
-<!--
-This also needs a better solution
--->
-<hr>
+<div class="panel panel-primary">
+<div class="panel-heading"                            
+<h3 class="panel-title">Job Selection</h3>
 </div>
+<div class="panel-body">
 <center>
-<div class="row">
+<div class="row" style="padding-left: 30px;">
 <div class="col-lg-2 well">
 <h3><a href='intern.php?page=Ranking&screen=Jobs&job=Woodcutter'>Woodcutter</a></h3>
 </div> 
@@ -348,7 +354,7 @@ This also needs a better solution
 <h3><a href='intern.php?page=Ranking&screen=Jobs&job=Digger'>Digger</a></h3>
 </div>
 </div>
-<div class="row">
+<div class="row" style="padding-left: 30px;">
 <div class="col-lg-2 well">
 <h3><a href='intern.php?page=Ranking&screen=Jobs&job=Farmer'>Farmer</a></h3>
 </div> 
@@ -365,17 +371,18 @@ This also needs a better solution
 <h3><a href='intern.php?page=Ranking&screen=Jobs&job=Weaponsmith'>Weaponsmith</a></h3>
 </div>
 </div>
-<div class="row">
+<div class="row" style="padding-left: 30px;">
 <div class="col-lg-2 well">
 <h3><a href='intern.php?page=Ranking&screen=Jobs&job=Brewer'>Brewer</a></h3>
 </div>
-<div class="col-lg-2">
-</div>
+<div class="col-lg-1"></div>
 <div class="col-lg-2 well">
 <h3><a href='intern.php?page=Ranking&screen=Jobs&job=Enchanter'>Enchanter</a></h3>
 </div>
 </div>
 </center>
+</div>
+</div>
 <?php
 }
 }
@@ -724,9 +731,12 @@ else
 echo "<h1>Welcome ".$_SESSION['user']."!</h1>";
 ?>
 <div class="row">
-<div class="col-lg-5 well">
-<h3>Information about you</h3>
-<hr>
+<div class="col-lg-6">
+<div class="panel panel-primary">
+<div class="panel-heading"                            
+<h3 class="panel-title">Information about you</h3>
+</div>
+<div class="panel-body">
 <?php
 $player = $_SESSION['user'];
 echo "<strong>Playtime: </strong>";
@@ -735,17 +745,22 @@ $time = round($time->playtime / 3600,2);
 echo $time . " Hours<br />";
 echo "<strong>Money: </strong>";
 $bank = mysqli_fetch_object($sql->query("SELECT * FROM `fe_accounts` WHERE `name` = '$player'"));
-echo $bank->money."&euro;";
+echo $bank->money."&euro;<br /><br />";
 ?>
 </div>
-<div class="col-lg-2"></div>
-<div class="col-lg-5 well">
-<h3>Fastnavigation:</h3>
-<hr>
+</div>
+</div>
+<div class="col-lg-6">
+<div class="panel panel-primary">
+<div class="panel-heading"                            
+<h3 class="panel-title">Fast Navigation</h3>
+</div>
+<div class="panel-body">
 <a href="intern.php?page=Support">Write Support Ticket</a><br />
 <?php echo "<a href=".$forum_link.">Forum</a>"; ?><br />
 <a href="intern.php?page=Settings">Settings</a>
-
+</div>
+</div>
 
 </div>
 </div>

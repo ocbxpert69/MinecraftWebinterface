@@ -486,7 +486,11 @@ echo "<div class='alert alert-info'>A new version of the Webinterface is out. Ch
 }
 ?>
 <div class="col-lg-6">
-<h4>Server-Information:</h4>  <hr>
+<div class="panel panel-primary">
+<div class="panel-heading"                            
+<h3 class="panel-title">Server Information</h3>
+</div>
+<div class="panel-body">
 <?php
 $v = get_data("http://api.iamphoenix.me/software/?server_ip=".$ip); 
 $v = json_decode($v, true);
@@ -551,9 +555,14 @@ echo "<strong>Players: </strong> $p Players are online!";
   </div>
 </div>
 </div>
+</div>
+</div>
 <div class="col-lg-6">
-<h4>Quick Settings</h4> 
-<hr>
+<div class="panel panel-primary">
+<div class="panel-heading"                            
+<h3 class="panel-title">Quick Server Toggles</h3>
+</div>
+<div class="panel-body">
 <?php
 if($action == "Start") {
 #ToDo
@@ -622,6 +631,8 @@ if($s == "true") {
 ?>
 </div>
 </div>
+</div>
+</div>
 <?php
 }
 }
@@ -630,6 +641,7 @@ if($s == "true") {
 }
 ?>
 </div>
+
 <br><br><br><br>
 <hr>
 <center>
